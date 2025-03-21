@@ -172,3 +172,11 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+
+# JS and React things
+
+node_modules/
+
