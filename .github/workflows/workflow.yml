@@ -36,4 +36,4 @@ jobs:
 
       - name: Instalar os pacotes e dependedências
         run: | 
-          poetry install
+          poetry install --no-root
