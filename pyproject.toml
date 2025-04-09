@@ -1,5 +1,5 @@
 [project]
-name = "promodb"
+name = "PromoDB"
 version = "0.1.0"
 description = "Backend do PromoDB"
 authors = [
