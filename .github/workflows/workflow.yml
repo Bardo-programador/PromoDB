@@ -32,3 +32,8 @@ jobs:
             ~/.cache/pypoetry
             ~/.cache/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+
+
+      - name: Instalar os pacotes e dependedências
+        run: | 
+          poetry install
