@@ -1,10 +1,21 @@
 <script>
+    import { onMount } from 'svelte';
 	export let name="Samuel";
+    let promocoes = []
+	onMount(async () => {
+	    const response = await fetch ('http://localhost:8000/api/promos');
+	    promocoes = await res.json();
+
+	}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Lista de Promoções!</h1>
+	<ul>
+	{#each promocoes as promocao}
+	<li>{produto.nome}: {produto.preco}</li>
+	{/each}
+	</ul>
 </main>
 
 <style>
