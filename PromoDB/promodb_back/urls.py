@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lxml.ElementInclude import include
+from rest_framework.routers import DefaultRouter
+from promodb_api import views as promoviews
 
+router = DefaultRouter()
+router.register(r'promos', promoviews.PromoViewSet)
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include(router.urls)), # agora a api de jogos está disponível em /api/promos
 ]
