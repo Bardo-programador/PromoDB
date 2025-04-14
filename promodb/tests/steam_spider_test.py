@@ -27,6 +27,9 @@ async def test_com_rede_real():
         encoding='utf-8'
     )
 
+    # verifica se resposta é 200 (OK)
+    assert fake_response.status == 200
+
     spider = PromocoesSteamSpider()
     lista = spider.extrai_lista_jogos(fake_response)
 
@@ -36,6 +39,7 @@ async def test_com_rede_real():
     item = PromodbScrapperItem()
     for jogo in lista:
         jogo = spider.coleta_infos(jogo, item)
+        # Verifica se consegue coletar informações dos jogos
         assert jogo is not None
         assert jogo["link"] is not None
         assert jogo["nome"] is not None
