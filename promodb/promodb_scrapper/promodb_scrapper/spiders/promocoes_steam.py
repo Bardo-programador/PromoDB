@@ -1,6 +1,7 @@
 import scrapy
 from promodb.promodb_scrapper.promodb_scrapper.items import PromodbScrapperItem
 
+
 from scrapy.selector import Selector
 class PromocoesSteamSpider(scrapy.Spider):
     name = "promocoes_steam"
