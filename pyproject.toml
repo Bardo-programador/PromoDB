@@ -1,11 +1,10 @@
 [project]
 name = "PromoDB"
 version = "0.1.0"
-description = "Backend do PromoDB"
+description = ""
 authors = [
     {name = "Your Name",email = "you@example.com"}
 ]
-package-mode = false
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.12"
@@ -13,10 +12,18 @@ dependencies = [
     "django (>=5.1.7,<6.0.0)",
     "scrapy (>=2.12.0,<3.0.0)",
     "djangorestframework (>=3.16.0,<4.0.0)",
-    "django-cors-headers (>=4.7.0,<5.0.0)"
+    "django-cors-headers (>=4.7.0,<5.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "aiohttp (>=3.11.16,<4.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.26.0"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
