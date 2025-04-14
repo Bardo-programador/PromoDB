@@ -40,4 +40,4 @@ jobs:
 
       - name: Executar testes
         run: |
-          pytest promodb/tests
+          poetry run pytest promodb/tests
