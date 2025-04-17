@@ -8,5 +8,8 @@ RUN pip wheel --no-cache-dir --no-deps -r requirements.txt -w /wheels
 
 
 
+FROM node:23.10-slim as prod
+COPY . .
 
+RUN npm install ./promodb_front
 ENTRYPOINT ["top", "-b"]
