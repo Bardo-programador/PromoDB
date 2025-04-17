@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'promodb_api',
     'corsheaders',
+    'promodb_scrapper',
 ]
 
 MIDDLEWARE = [

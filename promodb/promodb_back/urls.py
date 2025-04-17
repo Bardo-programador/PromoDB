@@ -15,13 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from lxml.ElementInclude import include
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from promodb_api import views as promoviews
 
 router = DefaultRouter()
-router.register(r'promos', promoviews.PromoViewSet)
+router.register(r'promos', promoviews.PromoViewSet, basename="Steam")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)), # agora a api de jogos está disponível em /api/promos

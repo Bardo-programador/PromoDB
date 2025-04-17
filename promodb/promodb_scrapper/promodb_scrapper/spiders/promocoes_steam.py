@@ -1,6 +1,6 @@
 import scrapy
 from promodb.promodb_scrapper.promodb_scrapper.items import PromodbScrapperItem
-
+from promodb_api.models import Jogo
 
 from scrapy.selector import Selector
 class PromocoesSteamSpider(scrapy.Spider):
@@ -26,7 +26,11 @@ class PromocoesSteamSpider(scrapy.Spider):
         lista_jogos = self.extrai_lista_jogos(response)
         item = PromodbScrapperItem()
         for jogo in lista_jogos:
-            yield self.coleta_infos(jogo, item)
+            jogo_steam = self.coleta_infos(jogo, item)
+
+            if not Jogo.objects.filter(nome=jogo_steam['nome']).exists():
+                Jogo.objects.create(**jogo_steam)
+
 
 
     def extrai_lista_jogos(self, response):
