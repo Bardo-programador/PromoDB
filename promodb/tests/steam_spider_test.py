@@ -1,13 +1,7 @@
 import pytest
-import scrapy
 from scrapy.http import HtmlResponse
-from twisted.internet import defer, reactor
 import aiohttp
-import sys
-import os
-
-# Adiciona a pasta correta ao sys.path
-
+import promodb.promodb_scrapper.setup
 from promodb.promodb_scrapper.promodb_scrapper.items import PromodbScrapperItem
 from promodb.promodb_scrapper.promodb_scrapper.spiders.promocoes_steam import PromocoesSteamSpider
 

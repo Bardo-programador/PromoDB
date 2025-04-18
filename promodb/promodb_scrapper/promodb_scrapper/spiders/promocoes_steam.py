@@ -1,8 +1,10 @@
 import scrapy
+import promodb.promodb_scrapper.setup
 from promodb.promodb_scrapper.promodb_scrapper.items import PromodbScrapperItem
 from promodb_api.models import Jogo
+from twisted.internet.threads import deferToThread
 
-from scrapy.selector import Selector
+
 class PromocoesSteamSpider(scrapy.Spider):
     name = "promocoes_steam"
     allowed_domains = ["store.steampowered.com"]
@@ -18,7 +20,7 @@ class PromocoesSteamSpider(scrapy.Spider):
             self.pages.append(f"https://store.steampowered.com/search/?supportedlang=english&specials=1&hidef2p=1&ndl=1&page={page}")
 
         for page in self.pages:
-            yield scrapy.Request(page, callback=self.parse_info_game)
+            yield scrapy.Request(page, callback=self.async_to_sync)
 
 
 
@@ -27,11 +29,13 @@ class PromocoesSteamSpider(scrapy.Spider):
         item = PromodbScrapperItem()
         for jogo in lista_jogos:
             jogo_steam = self.coleta_infos(jogo, item)
-
-            if not Jogo.objects.filter(nome=jogo_steam['nome']).exists():
+            print(jogo_steam)
+            if not Jogo.objects.filter(nome=jogo_steam['nome'], loja="Steam").exists():
                 Jogo.objects.create(**jogo_steam)
 
 
+    def async_to_sync(self, response):
+        return deferToThread(self.parse_info_game, response)
 
     def extrai_lista_jogos(self, response):
         return response.css("#search_resultsRows > a")
