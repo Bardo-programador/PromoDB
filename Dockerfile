@@ -2,14 +2,11 @@ FROM python:3.12-slim as builder
 LABEL authors="samuel"
 
 WORKDIR /app
-COPY ./requirements.txt ./requirements.txt
+COPY ./requirements.txt ./requirements.
+COPY ./promodb/promodb_back ./promodb/promodb_back
+COPY ./promodb/promodb_scrapper ./promodb/promodb_scrapper
+
 RUN pip install wheel
 RUN pip wheel --no-cache-dir --no-deps -r requirements.txt -w /wheels
 
 
-
-FROM node:23.10-slim as prod
-COPY . .
-
-RUN npm install ./promodb_front
-ENTRYPOINT ["top", "-b"]
