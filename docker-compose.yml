@@ -1,0 +1,32 @@
+services:
+  web:
+    build:
+      context: ./promodb_front
+      dockerfile: Dockerfile
+      target: production
+    container_name: promodb-web
+    ports:
+      - "5173:5173"
+    networks:
+      - frontend
+
+
+  backend:
+    build:
+      context: .
+      target: production
+    container_name: promodb-api
+    environment:
+      - PYTHONPATH=/api/promodb
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+    driver: bridge
+
+  backend:
+    driver: bridge
