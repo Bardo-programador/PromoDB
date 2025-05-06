@@ -6,7 +6,6 @@ authors = [
     {name = "Your Name",email = "you@example.com"}
 ]
 license = {text = "MIT"}
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "django (>=5.1.7,<6.0.0)",

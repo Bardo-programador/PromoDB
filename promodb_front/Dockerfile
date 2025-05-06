@@ -22,15 +22,13 @@ FROM node:20-alpine as production
 WORKDIR /app
 
 # Copia apenas os artefatos necessários do builder
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/package-lock.json ./
+COPY --from=builder /app ./
 
 # Reinstala somente as dependências de produção
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Expõe a porta padrão
 EXPOSE 5173
-
+ENV VITE_API_URL=http://promodb-api:8000
 # Comando de inicialização
-CMD ["npm", "run", "dev", "--", "--open" ]
+CMD ["npm", "run", "dev", "--", "--host" ]

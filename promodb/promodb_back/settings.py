@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure--!^(z+xm-*=x20x1^6+lg8!&k@(se3kzwh0i!p79q_*cm19s=3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["promodb-api", "localhost"]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
