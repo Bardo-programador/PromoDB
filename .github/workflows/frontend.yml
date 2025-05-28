@@ -20,11 +20,11 @@ jobs:
 
     - name: Instalar dependências
       run: npm ci
-      working-directory: promodb_frontend
+      working-directory: promodb_front
 
     - name: Build do SvelteKit
       run: npm run build
-      working-directory: promodb_frontend
+      working-directory: promodb_front
 
     - name: Login no DockerHub
       uses: docker/login-action@v3
