@@ -39,8 +39,8 @@ jobs:
     - name: Construir e enviar imagem para DockerHub
       uses: docker/build-push-action@v5
       with:
-        context: ./promodb_frontend
+        context: ./promodb_front
         push: true
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/promodb_frontend:latest
-          ${{ secrets.DOCKERHUB_USERNAME }}/promodb_front:${{ env.TAG }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/promodb_frontend:${{ env.TAG }}
