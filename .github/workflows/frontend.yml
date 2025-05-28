@@ -26,10 +26,6 @@ jobs:
       run: npm run build
       working-directory: promodb_front
 
-    - name: Testar leitura do secret DOCKERHUB_USERNAME
-      run: echo "Usuário do DockerHub tem ${#DOCKERHUB_USERNAME} caracteres"
-      env:
-        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
     - name: Login no DockerHub
       uses: docker/login-action@v3
       with:
